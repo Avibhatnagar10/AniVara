@@ -31,7 +31,7 @@ export default function Home() {
     { title: "One Piece", category: "Adventure", img: "/luffy1.jpeg" },
     { title: "Your Name", category: "Romance", img: "/yourname.jpeg" },
     { title: "Weathering with You", category: "Romance", img: "/weathering.jpeg" },
-    { title: "Haikyuu", category: "Sports", img: "/haikyuu.png" },
+    { title: "Haikyuu", category: "Sports", img: "/Haikyuu.png" },
   ];
 
   // Anime list for categories section
