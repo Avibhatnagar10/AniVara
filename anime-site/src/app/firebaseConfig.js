@@ -8,13 +8,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBn48GHLYxiDMio5ItOISV-e5FK15aKN5Y",
-    authDomain: "anivara-c56ec.firebaseapp.com",
-    projectId: "anivara-c56ec",
-    storageBucket: "anivara-c56ec.firebasestorage.app",
-    messagingSenderId: "214632684791",
-    appId: "1:214632684791:web:c1fa3e076bc5535261c7f2",
-    measurementId: "G-0W3Q1ZNM7X",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
