@@ -38,7 +38,7 @@ export default function Home() {
   const animeList = [
     // { title: "Toradora", category: "Romance", img: "/toradora.jpeg" },
     { title: "One Punch Man", category: "Comedy", img: "/punch.jpeg" },
-    { title: "Haikyuu", category: "Sports", img: "/haikyuu.png" },
+    { title: "Haikyuu", category: "Sports", img: "/Haikyuu.png" },
     { title: "Horimiya", category: "Romance", img: "/hori1.jpeg" },
     { title: "One Piece", category: "Adventure", img: "/luffy1.jpeg" },
     { title: "My Dress Up Darling", category: "Fantasy", img: "/Kitagawa1.jpeg" },
@@ -54,7 +54,7 @@ export default function Home() {
     { title: "Parasyte", category: "Horror", img: "/Parasyte.jpeg" },
     { title: "The Angel Next Door",  category: "Romance", img: "/Shiina Mahiru.jpeg" },
     { title: "I want to Eat Pancrease", category: "Romance", img: "eat.jpeg" },
-    { title: ""}
+    
   ];
 
   // Filter anime based on the selected category
