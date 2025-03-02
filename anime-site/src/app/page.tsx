@@ -27,7 +27,7 @@ export default function Home() {
   const topAnime = [
     { title: "Naruto", category: "Action", img: "/naruto.jpeg" },
     { title: "Attack on Titan", category: "Action", img: "/Eren Jaeger.jpeg" },
-    { title: "Demon Slayer", category: "Action", img: "/kamado Tanjiro.jpeg" },
+    { title: "Demon Slayer", category: "Action", img: "/kamado tanjiro.jpeg" },
     { title: "One Piece", category: "Adventure", img: "/luffy1.jpeg" },
     { title: "Your Name", category: "Romance", img: "/yourname.jpeg" },
     { title: "Weathering with You", category: "Romance", img: "/weathering.jpeg" },
