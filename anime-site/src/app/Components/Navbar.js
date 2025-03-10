@@ -8,14 +8,20 @@ import {
   InputBase,
   Button,
   Avatar,
-  Menu,
-  MenuItem,
   CircularProgress,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { signInWithGoogle, logout, auth } from "../firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import GoogleIcon from "@mui/icons-material/Google"; // Google Icon
+import GoogleIcon from "@mui/icons-material/Google";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const SearchBar = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,11 +52,13 @@ const LoginButton = styled(Button)({
   },
 });
 
-
 export default function Navbar() {
   const [user, setUser] = useState(null);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [setAnchorEl] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -59,17 +67,8 @@ export default function Navbar() {
     return () => unsubscribe();
   }, []);
 
-  // Open login menu
-  const handleOpenLoginMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  // Close login menu
-  const handleCloseLoginMenu = () => {
-    setAnchorEl(null);
-  };
-
-  // Sign-in with Google function
+  const handleOpenLoginMenu = (event) => setAnchorEl(event.currentTarget);
+  const handleCloseLoginMenu = () => setAnchorEl(null);
   const handleSignInWithGoogle = async () => {
     setLoading(true);
     try {
@@ -81,6 +80,15 @@ export default function Navbar() {
       setLoading(false);
     }
   };
+
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      return;
+    }
+    setMobileOpen(open);
+  };
+
+  const menuItems = ["Home", "Categories", "Watchlist"];
 
   return (
     <AppBar position="static" sx={{ bgcolor: "black", boxShadow: 2 }}>
@@ -100,78 +108,68 @@ export default function Navbar() {
           >
             AniVara
           </Typography>
-
-          {/* Search Bar */}
-          <SearchBar>
-            <InputBase
-              placeholder="Search Anime..."
-              fullWidth
-              sx={{ color: "white", ml: 1 }}
-            />
-          </SearchBar>
-        </Box>
-
-        {/* Right Side - Navigation Links & Auth Buttons */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          {["Home", "Categories", "Watchlist"].map((item, index) => (
-            <Typography
-              key={index}
-              component="a"
-              href={`/${item.toLowerCase()}`}
-              sx={{
-                color: "grey.300",
-                textDecoration: "none",
-                fontSize: "1rem",
-                transition: "color 0.3s ease-in-out",
-                "&:hover": { color: "error.main" },
-              }}
-            >
-              {item}
-            </Typography>
-          ))}
-
-          {/* If User is Logged In, Show Avatar & Logout */}
-          {user ? (
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Avatar src={user.photoURL} alt="User Avatar" sx={{ width: 40, height: 40 }} />
-              <Button
-                variant="contained"
-                color="error"
-                onClick={logout}
-                sx={{
-                  px: 3,
-                  py: 1,
-                  fontWeight: "bold",
-                  transition: "transform 0.2s ease-in-out",
-                  "&:hover": { transform: "scale(1.05)" },
-                }}
-              >
-                Logout
-              </Button>
-            </Box>
-          ) : (
-            <>
-              {/* Login Button */}
-              <LoginButton
-                onClick={handleOpenLoginMenu}
-                disabled={loading}
-              >
-                {loading ? (
-                  <CircularProgress size={24} sx={{ color: "white" }} />
-                ) : (
-                  "Login"
-                )}
-              </LoginButton>
-
-              {/* Login Menu */}
-              <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleCloseLoginMenu}>
-                <MenuItem onClick={handleSignInWithGoogle}>
-                  <GoogleIcon sx={{ marginRight: 1 }} /> Sign in with Google
-                </MenuItem>
-              </Menu>
-            </>
+          {!isMobile && (
+            <SearchBar>
+              <InputBase placeholder="Search Anime..." fullWidth sx={{ color: "white", ml: 1 }} />
+            </SearchBar>
           )}
         </Box>
+
+        {/* Right Side - Navigation & Auth */}
+        {isMobile ? (
+          <>
+            <IconButton color="inherit" onClick={toggleDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Drawer anchor="right" open={mobileOpen} onClose={toggleDrawer(false)}>
+              <List>
+                {menuItems.map((item, index) => (
+                  <ListItem button key={index} onClick={toggleDrawer(false)}>
+                    <ListItemText primary={item} />
+                  </ListItem>
+                ))}
+                {user ? (
+                  <ListItem button onClick={logout}>
+                    <ListItemText primary="Logout" sx={{ color: "error.main" }} />
+                  </ListItem>
+                ) : (
+                  <ListItem button onClick={handleSignInWithGoogle}>
+                    <GoogleIcon sx={{ marginRight: 1 }} /> Sign in with Google
+                  </ListItem>
+                )}
+              </List>
+            </Drawer>
+          </>
+        ) : (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+            {menuItems.map((item, index) => (
+              <Typography
+                key={index}
+                component="a"
+                href={`/${item.toLowerCase()}`}
+                sx={{
+                  color: "grey.300",
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  transition: "color 0.3s ease-in-out",
+                  "&:hover": { color: "error.main" },
+                }}
+              >
+                {item}
+              </Typography>
+            ))}
+            {user ? (
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Avatar src={user.photoURL} alt="User Avatar" sx={{ width: 40, height: 40 }} />
+                <Button variant="contained" color="error" onClick={logout}>Logout</Button>
+              </Box>
+            ) : (
+              <LoginButton onClick={handleOpenLoginMenu} disabled={loading}>
+                {loading ? <CircularProgress size={24} sx={{ color: "white" }} /> : "Login"}
+              </LoginButton>
+            )}
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
   );
