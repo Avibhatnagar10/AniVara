@@ -38,16 +38,16 @@ export default function Home() {
   const topAnime = [
     { title: "Naruto", category: "Action", img: "/naruto.jpeg" },
     { title: "Attack on Titan", category: "Action", img: "/Eren Jaeger.jpeg" },
-    { title: "Demon Slayer", category: "Action", img: "/Kamado Tanjiro.jpeg" },
+    { title: "Demon Slayer", category: "Action", img: "/kamado tanjiro.jpeg" },
     { title: "One Piece", category: "Adventure", img: "/luffy1.jpeg" },
     { title: "Your Name", category: "Romance", img: "/yourname.jpeg" },
     { title: "Weathering with You", category: "Romance", img: "/weathering.jpeg" },
-    { title: "Haikyuu", category: "Sports", img: "/haikyuu.png" },
+    { title: "Haikyuu", category: "Sports", img: "/Haikyuu.png" },
   ];
 
   const animeList = [
     { title: "One Punch Man", category: "Comedy", img: "/punch.jpeg" },
-    { title: "Haikyuu", category: "Sports", img: "/haikyuu.png" },
+    { title: "Haikyuu", category: "Sports", img: "/Haikyuu.png" },
     { title: "Horimiya", category: "Romance", img: "/hori1.jpeg" },
     { title: "One Piece", category: "Adventure", img: "/luffy1.jpeg" },
     { title: "My Dress Up Darling", category: "Fantasy", img: "/Kitagawa1.jpeg" },
