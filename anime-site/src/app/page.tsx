@@ -8,11 +8,8 @@ import {
   Card,
   CardMedia,
   CardContent,
-  // CardActions,
   Button,
-  // IconButton,
 } from "@mui/material";
-// import { BookmarkAddOutlined } from "@mui/icons-material";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import AnimeCarousel from "./Components/AnimeCarousel";
@@ -25,7 +22,18 @@ export default function Home() {
     setTimeout(() => setLoading(false), 2000);
   }, []);
 
-  const categories = ["All", "Action", "Romance", "Comedy", "Adventure", "Fantasy", "Sports", "Sci-Fi", "Thriller", "Horror"];
+  const categories = [
+    "All",
+    "Action",
+    "Romance",
+    "Comedy",
+    "Adventure",
+    "Fantasy",
+    "Sports",
+    "Sci-Fi",
+    "Thriller",
+    "Horror",
+  ];
 
   const topAnime = [
     { title: "Naruto", category: "Action", img: "/naruto.jpeg" },
@@ -56,12 +64,22 @@ export default function Home() {
     { title: "I Want to Eat Your Pancreas", category: "Romance", img: "/eat.jpeg" },
   ];
 
-  const filteredAnime = selectedCategory === "All" ? animeList : animeList.filter((anime) => anime.category === selectedCategory);
+  const filteredAnime =
+    selectedCategory === "All"
+      ? animeList
+      : animeList.filter((anime) => anime.category === selectedCategory);
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "black" }}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#121212", color: "white" }}>
       {loading ? (
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", bgcolor: "black" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
           <div className="loader"></div>
         </Box>
       ) : (
@@ -69,21 +87,38 @@ export default function Home() {
           <Navbar />
           <AnimeCarousel />
 
-          {/* Top Anime Section */}
           <Box textAlign="center" my={4}>
-            <Typography variant="h4" fontWeight="bold" color="white">
+            <Typography variant="h4" fontWeight="bold" color="red">
               Top Anime
             </Typography>
-            <Box sx={{ width: 80, height: 4, bgcolor: "red", mx: "auto", mt: 1, borderRadius: 2 }} />
+            <Box
+              sx={{
+                width: 100,
+                height: 4,
+                bgcolor: "red",
+                mx: "auto",
+                mt: 1,
+                borderRadius: 2,
+              }}
+            />
           </Box>
+
           <Container>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} justifyContent="center">
               {topAnime.map((anime, index) => (
-                <Grid item key={index} xs={10} sm={6} md={4} lg={3}>
-                  <Card sx={{ boxShadow: 2 }}>
-                    <CardMedia component="img" image={anime.img} alt={anime.title} height="300" />
-                    <CardContent sx={{ bgcolor: "black", color: "white", textAlign: "center" }}>
-                      <Typography variant="h6" fontWeight="bold">{anime.title}</Typography>
+                <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                  <Card sx={{ boxShadow: 4, bgcolor: "#1e1e1e", borderRadius: 3 }}>
+                    <CardMedia
+                      component="img"
+                      image={anime.img}
+                      alt={anime.title}
+                      height="300"
+                      sx={{ borderRadius: "3px 3px 0 0" }}
+                    />
+                    <CardContent sx={{ textAlign: "center" }}>
+                      <Typography variant="h6" fontWeight="bold" color="red">
+                        {anime.title}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
@@ -91,7 +126,6 @@ export default function Home() {
             </Grid>
           </Container>
 
-          {/* Category Buttons */}
           <Box textAlign="center" my={4} display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
             {categories.map((category) => (
               <Button
@@ -99,22 +133,36 @@ export default function Home() {
                 variant={selectedCategory === category ? "contained" : "outlined"}
                 color="error"
                 onClick={() => setSelectedCategory(category)}
-                sx={{ borderRadius: 5, px: 3, py: 1.5, fontSize: "1rem", fontWeight: "bold" }}
+                sx={{
+                  borderRadius: 10,
+                  px: 4,
+                  py: 1.5,
+                  fontSize: "1rem",
+                  fontWeight: "bold",
+                  boxShadow: selectedCategory === category ? 4 : 2,
+                }}
               >
                 {category}
               </Button>
             ))}
           </Box>
 
-          {/* Anime Grid */}
           <Container>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} justifyContent="center">
               {filteredAnime.map((anime, index) => (
-                <Grid item key={index} xs={10} sm={6} md={4} lg={3}>
-                  <Card sx={{ boxShadow: 2 }}>
-                    <CardMedia component="img" image={anime.img} alt={anime.title} height="300" />
-                    <CardContent sx={{ bgcolor: "black", color: "white", textAlign: "center" }}>
-                      <Typography variant="h6" fontWeight="bold">{anime.title}</Typography>
+                <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                  <Card sx={{ boxShadow: 4, bgcolor: "#1e1e1e", borderRadius: 3 }}>
+                    <CardMedia
+                      component="img"
+                      image={anime.img}
+                      alt={anime.title}
+                      height="300"
+                      sx={{ borderRadius: "3px 3px 0 0" }}
+                    />
+                    <CardContent sx={{ textAlign: "center" }}>
+                      <Typography variant="h6" fontWeight="bold" color="red">
+                        {anime.title}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
