@@ -20,14 +20,14 @@ const slides = [
     title: "Horimiya",
     description:
       "A popular and cheerful girl crosses paths with a quiet and reserved classmate, only to discover they both have hidden sides unknown to others. As they grow closer, their bond deepens, revealing a heartfelt story of love, friendship, and self-acceptance in a high school setting.",
-    image: "/hori.jpg",
+    image: "/horimiya.jpg",
   },
   {
     id: 3,
-    title: "One Piece",
+    title: "Teasing-Master: Takagi-san",
     description:
-      "One Piece follows Monkey D. Luffy, a young pirate with the ability to stretch like rubber after eating a Devil Fruit. He sets sail with his crew, the Straw Hat Pirates, in search of the legendary One Piece treasure. Filled with adventure, epic battles, and deep storytelling, it's a timeless journey.",
-    image: "/luffy.jpeg",
+    "Teasnig-Master Takagi-san is a Japanese manga series written and illustrated by Takagi-san. It tells the story of a man who is a master of the tea ceremony and spends his days teaching it to others.",
+    image: "/teasing.jpg",
   },
   {
     id: 4,
@@ -35,6 +35,13 @@ const slides = [
     description:
       "Jujutsu Kaisen follows Yuji Itadori, a high schooler who becomes the vessel for the powerful Curse, Sukuna. To protect humanity, he joins Jujutsu High, where sorcerers battle monstrous Curses.",
     image: "/jjk.jpg",
+  },
+  {
+    id: 5,
+    title: "One Piece",
+    description:
+      "One Piece follows Monkey D. Luffy, a young pirate with the ability to stretch like rubber after eating a Devil Fruit. He sets sail with his crew, the Straw Hat Pirates, in search of the legendary One Piece treasure. Filled with adventure, epic battles, and deep storytelling, it's a timeless journey.",
+    image: "/luffy.jpeg",
   },
 ];
 
@@ -46,7 +53,7 @@ export default function AnimeCarousel() {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 4000 }}
+        autoplay={{ delay: 3000 }}
         loop
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         style={{ width: "100%", height: "100%" }}
@@ -66,7 +73,7 @@ export default function AnimeCarousel() {
                   position: "absolute",
                   width: "100%",
                   height: "100%",
-                  background: "linear-gradient(to right, rgba(0, 0, 0, 1), transparent)",
+                  background: "linear-gradient(to right, rgb(0, 0, 0), transparent)",
                 }}
               />
             </Card>
